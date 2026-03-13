@@ -17,23 +17,23 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean install -DskipTests'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
 
         stage('Package') {
             steps {
-                bat 'mvn package'
+                sh 'mvn package'
             }
             post {
                 success {
-                    archiveArtifacts artifacts: 'target\\*.jar', fingerprint: true
+                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
                 }
             }
         }
